@@ -4,19 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.UserManagement.bean.Result;
 import com.example.UserManagement.entity.Login;
 import com.example.UserManagement.entity.User;
-import com.example.UserManagement.service.SecurityService;
 import com.example.UserManagement.service.UserService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserService userService;
