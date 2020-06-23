@@ -1,12 +1,16 @@
 package com.example.UserManagement.service;
 
 import com.example.UserManagement.bean.Result;
+
+import com.example.UserManagement.entity.Group;
 import com.example.UserManagement.entity.User;
 import com.example.UserManagement.mapper.UserMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -15,6 +19,8 @@ public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private SecurityService securityService;
     /**
      * 注册
      * @param user 参数封装
@@ -81,6 +87,21 @@ public class UserService {
         try{
             List<User> userList = userMapper.findUsersById(id);
             result.setDetail(userList);
+            result.setSuccess(true);
+            result.setMsg("获取成功");
+        } catch (Exception e){
+            result.setMsg(e.getMessage());
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public Result<List<Group>> getGroupList(int id){
+        Result<List<Group>> result = new Result<>();
+        try{
+            List<Group> groupList = userMapper.findGroupsById(id);
+            result.setDetail(groupList);
             result.setSuccess(true);
             result.setMsg("获取成功");
         } catch (Exception e){

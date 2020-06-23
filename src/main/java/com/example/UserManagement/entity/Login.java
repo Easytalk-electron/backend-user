@@ -1,5 +1,7 @@
 package com.example.UserManagement.entity;
 
+import javax.management.Query;
+
 public class Login{
     private String id;
     private String username;
